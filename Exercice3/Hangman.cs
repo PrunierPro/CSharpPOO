@@ -12,25 +12,31 @@ namespace Exercice3
         public char[] Mask { get; private set; }
         public string Word { get; private set; }
         public int TryAmount { get; private set; }
+        public int MaxTryAmount { get; private set; }
+        private List<char> UsedLetters { get; set; }
 
         public Hangman()
         {
             Word = WordGenerator.GenerateWord().ToUpper();
             Mask = GenerateMask();
-            TryAmount = 10;
+            TryAmount = 0;
+            MaxTryAmount = 10;
+            UsedLetters = new List<char>();
         }
 
         public Hangman(int tryAmount)
         {
             Word = WordGenerator.GenerateWord().ToUpper();
             Mask = GenerateMask();
-            TryAmount = tryAmount;
+            TryAmount = 0;
+            MaxTryAmount = tryAmount;
+            UsedLetters = new List<char>();
         }
 
         public void TestChar(char c)
         {
             c = Char.ToUpper(c);
-            if (Mask.Contains(c)) 
+            if (UsedLetters.Contains(c)) 
             {
                 Console.WriteLine("You already entered that letter!");
             } else if (Word.Contains(c))
@@ -46,8 +52,9 @@ namespace Exercice3
                 }
             } else
             {
-                TryAmount--;
+                TryAmount++;
             }
+            UsedLetters.Add(c);
         }
 
         public bool TestWin()
@@ -63,6 +70,81 @@ namespace Exercice3
                 res[i] = '*';
             }
             return res;
+        }
+
+        public void ShowHangman()
+        {
+            string[,] penduAscii = {
+                {"           ",
+                "            ",
+                "            ",
+                "            ",
+                "            ",
+                "            ",
+                "            "},
+                {"           ",
+                "            ",
+                "            ",
+                "            ",
+                "            ",
+                "            ",
+                "--------    "},
+                {"           ",
+                "            ",
+                "            ",
+                " |          ",
+                " |          ",
+                " |          ",
+                "--------    "},
+                {"           ",
+                " |          ",
+                " |          ",
+                " |          ",
+                " |          ",
+                " |          ",
+                "--------    "},
+                {"           ",
+                " |/         ",
+                " |          ",
+                " |          ",
+                " |          ",
+                " |          ",
+                "--------    "},
+                {"_____      ",
+                " |/         ",
+                " |          ",
+                " |          ",
+                " |          ",
+                " |          ",
+                "--------    "},
+                {"___________",
+                " |/         ",
+                " |          ",
+                " |          ",
+                " |          ",
+                " |          ",
+                "--------    "},
+                {"___________ ",
+                " |/       | ",
+                " |          ",
+                " |          ",
+                " |          ",
+                " |          ",
+                "--------    "},
+                {"___________ ",
+                " |/       | ",
+                " |        O ",
+                " |       /|\\",
+                " |       / \\",
+                " |          ",
+                "--------    "},
+            };
+            Console.WriteLine($"Debug: {TryAmount * 8 / MaxTryAmount}");
+            int noPendu = TryAmount == 0 ? 0 : (TryAmount * 8 / MaxTryAmount);
+            for (int i = 0; i < 7; i++)
+            {
+                Console.WriteLine(penduAscii[noPendu, i]);
+            }
         }
     }
 }

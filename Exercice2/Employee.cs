@@ -22,8 +22,8 @@ namespace Exercice2
         public string Category { get => _category; set => _category = value; }
         public string Name { get => _name; set => _name = value; }
         public double Salary { get => _salary; private set => _salary = value; }
-        public static int EmployeeAmount { get => _employeeAmount; set => _employeeAmount = value; }
-        public static double TotalSalary { get => _totalSalary; set => _totalSalary = value; }
+        public static int EmployeeAmount { get => _employeeAmount; private set => _employeeAmount = value; }
+        public static double TotalSalary { get => _totalSalary; private set => _totalSalary = value; }
 
         public Employee(int id, string service, string category, string name, double salary)
         {
