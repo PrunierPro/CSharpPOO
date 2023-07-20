@@ -13,7 +13,7 @@ namespace Exercice3
         public string Word { get; private set; }
         public int TryAmount { get; private set; }
         public int MaxTryAmount { get; private set; }
-        private List<char> UsedLetters { get; set; }
+        public List<char> UsedLetters { get; private set; }
 
         public Hangman()
         {
@@ -39,6 +39,7 @@ namespace Exercice3
             if (UsedLetters.Contains(c)) 
             {
                 Console.WriteLine("You already entered that letter!");
+                return;
             } else if (Word.Contains(c))
             {
                 List<int> indexes = new List<int>();
@@ -55,6 +56,7 @@ namespace Exercice3
                 TryAmount++;
             }
             UsedLetters.Add(c);
+            UsedLetters.Sort();
         }
 
         public bool TestWin()
@@ -72,79 +74,6 @@ namespace Exercice3
             return res;
         }
 
-        public void ShowHangman()
-        {
-            string[,] penduAscii = {
-                {"           ",
-                "            ",
-                "            ",
-                "            ",
-                "            ",
-                "            ",
-                "            "},
-                {"           ",
-                "            ",
-                "            ",
-                "            ",
-                "            ",
-                "            ",
-                "--------    "},
-                {"           ",
-                "            ",
-                "            ",
-                " |          ",
-                " |          ",
-                " |          ",
-                "--------    "},
-                {"           ",
-                " |          ",
-                " |          ",
-                " |          ",
-                " |          ",
-                " |          ",
-                "--------    "},
-                {"           ",
-                " |/         ",
-                " |          ",
-                " |          ",
-                " |          ",
-                " |          ",
-                "--------    "},
-                {"_____      ",
-                " |/         ",
-                " |          ",
-                " |          ",
-                " |          ",
-                " |          ",
-                "--------    "},
-                {"___________",
-                " |/         ",
-                " |          ",
-                " |          ",
-                " |          ",
-                " |          ",
-                "--------    "},
-                {"___________ ",
-                " |/       | ",
-                " |          ",
-                " |          ",
-                " |          ",
-                " |          ",
-                "--------    "},
-                {"___________ ",
-                " |/       | ",
-                " |        O ",
-                " |       /|\\",
-                " |       / \\",
-                " |          ",
-                "--------    "},
-            };
-            Console.WriteLine($"Debug: {TryAmount * 8 / MaxTryAmount}");
-            int noPendu = TryAmount == 0 ? 0 : (TryAmount * 8 / MaxTryAmount);
-            for (int i = 0; i < 7; i++)
-            {
-                Console.WriteLine(penduAscii[noPendu, i]);
-            }
-        }
+        
     }
 }
