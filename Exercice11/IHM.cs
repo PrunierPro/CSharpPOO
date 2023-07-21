@@ -8,7 +8,8 @@ namespace Exercice11
 {
     internal static class IHM
     {
-        private static Pile<string> _pile = new Pile<string>();
+        //private static Pile<string> _pile = new Pile<string>();
+        private static ArrayStack<string> _pile = new ArrayStack<string>();
         public static void Start()
         {
             MainMenu();
@@ -46,20 +47,20 @@ namespace Exercice11
         {
             Console.Write("\nValue to add : ");
             string value = Console.ReadLine();
-            _pile.Add(value);
+            _pile.Stack(value);
             Console.WriteLine($"{value} was added to the pile. Returning to main menu...\n");
         }
 
         private static void TakeElement()
         {
-            Console.WriteLine($"\nThe element {_pile.Remove()} was removed from the pile. Returning to main menu...\n");
+            Console.WriteLine($"\nThe element {_pile.Unstack()} was removed from the pile. Returning to main menu...\n");
         }
 
         private static void TakeElementX()
         {
             Console.Write("\nIndex of element to take : ");
             int index = InputControl();
-            Console.WriteLine($"The element {_pile.RemoveAt(index-1)} at index {index} was removed from the pile. Returning to main menu...\n");
+            Console.WriteLine($"The element {_pile.UnstackAt(index-1)} at index {index} was removed from the pile. Returning to main menu...\n");
         }
 
         private static int InputControl()

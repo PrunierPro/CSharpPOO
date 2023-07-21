@@ -1,12 +1,10 @@
-﻿using System.Threading.Channels;
-
-namespace Exercice11
+﻿namespace BonusThermometer
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            IHM.Start();
+            Console.WriteLine("Hello, World!");
         }
     }
 }

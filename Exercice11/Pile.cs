@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exercice11
 {
-    internal class Pile<T>
+    internal class Pile<T> : IStackable<T>
     {
         public List<T> Elements { get; }
         public int Count => Elements.Count;
@@ -17,17 +17,17 @@ namespace Exercice11
             Elements = new List<T>();
         }
 
-        public void Add(T element)
+        public void Stack(T element)
         {
             Elements.Add(element);
         }
 
-        public T Remove()
+        public T Unstack()
         {
-            return RemoveAt(Elements.Count - 1);
+            return UnstackAt(Elements.Count - 1);
         }
 
-        public T RemoveAt(int index)
+        public T UnstackAt(int index)
         {
             T res = Elements.ElementAt(index);
             Elements.RemoveAt(index);
