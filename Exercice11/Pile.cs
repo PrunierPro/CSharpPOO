@@ -24,11 +24,19 @@ namespace Exercice11
 
         public T Unstack()
         {
+            if (Count <= 0)
+            {
+                throw new InvalidOperationException("The stack is empty.");
+            }
             return UnstackAt(Elements.Count - 1);
         }
 
         public T UnstackAt(int index)
         {
+            if (index <= 0 || index >= Count - 1)
+            {
+                throw new IndexOutOfRangeException("Index is out of the stack range.");
+            }
             T res = Elements.ElementAt(index);
             Elements.RemoveAt(index);
             return res;

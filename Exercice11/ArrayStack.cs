@@ -26,6 +26,10 @@ namespace Exercice11
 
         public T Unstack()
         {
+            if(Count <= 0)
+            {
+                throw new InvalidOperationException("The stack is empty.");
+            }
             T res = _elements[Count - 1];
             Array.Resize<T>(ref _elements, Count - 1);
             return res;
@@ -33,6 +37,10 @@ namespace Exercice11
 
         public T UnstackAt(int index)
         {
+            if(index <= 0 || index >= Count - 1)
+            {
+                throw new IndexOutOfRangeException("Index is out of the stack range.");
+            }
             T res = _elements[index];
             T[] newElements = new T[Count - 1];
             Array.ConstrainedCopy(_elements, 0, newElements, 0, index);

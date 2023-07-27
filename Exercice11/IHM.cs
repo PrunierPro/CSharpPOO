@@ -53,14 +53,29 @@ namespace Exercice11
 
         private static void TakeElement()
         {
-            Console.WriteLine($"\nThe element {_pile.Unstack()} was removed from the pile. Returning to main menu...\n");
+            try
+            {
+                Console.WriteLine($"\nThe element {_pile.Unstack()} was removed from the pile. Returning to main menu...\n");
+            } catch(InvalidOperationException ex)
+            {
+                Console.WriteLine("\n" + ex.Message + "\n");
+            }
+
         }
 
         private static void TakeElementX()
         {
-            Console.Write("\nIndex of element to take : ");
-            int index = InputControl();
-            Console.WriteLine($"The element {_pile.UnstackAt(index-1)} at index {index} was removed from the pile. Returning to main menu...\n");
+            try
+            {
+                Console.Write("\nIndex of element to take : ");
+                int index = InputControl();
+                Console.WriteLine($"The element {_pile.UnstackAt(index - 1)} at index {index} was removed from the pile. Returning to main menu...\n");
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("\n" + ex.Message + "\n");
+            }
+
         }
 
         private static int InputControl()
